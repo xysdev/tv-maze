@@ -2,6 +2,11 @@
   "name": "tv-maze",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.13.1",
+    "npm": "~10.5.2"
+  },
+  "engineStrict": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
