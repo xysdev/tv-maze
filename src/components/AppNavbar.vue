@@ -1,29 +1,28 @@
 <template>
   <nav>
     <div class="logo">TV Maze</div>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Movies</a></li>
-      <li><a href="#">Series</a></li>
-    </ul>
+    <SearchBar />
   </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import SearchBar from '@/components/SearchBar.vue';
 
 export default defineComponent({
   name: 'AppNavbar',
+  components: {
+    SearchBar,
+  },
 });
 </script>
 
 <style scoped>
 nav {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #141414;
+  background-color: transparent;
   color: #fff;
 }
 
