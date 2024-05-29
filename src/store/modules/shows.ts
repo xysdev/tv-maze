@@ -1,4 +1,4 @@
-import { createStore, Module, ActionContext } from 'vuex';
+import { Module, ActionContext } from 'vuex';
 import axios from 'axios';
 import { Show } from '@/interfaces/show';
 

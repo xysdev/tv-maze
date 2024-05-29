@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import {
-  defineComponent, computed, onMounted, ref, Ref,
+  defineComponent, computed, onMounted,
 } from 'vue';
 import 'vue3-carousel/dist/carousel.css';
 import { useStore } from 'vuex';
