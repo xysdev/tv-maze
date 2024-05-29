@@ -1,45 +1,63 @@
 <template>
-  <div>
-    <AppNavbar />
-    <HeroSection />
-    <div class="movie-list">
-      <MovieCard v-for="movie in movies" :key="movie.id" :movie="movie" />
-    </div>
-    <AppFooter />
+  <AppNavbar />
+  <HeroSection />
+  <div v-for="(title, key) in showGenre" :key="key">
+    <GenereSelection :shows="showsByGenere[key]" :title="title" />
   </div>
+
+  <AppFooter />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import AppNavbar from '@/components/AppNavbar.vue';
-import HeroSection from '@/components/HeroSection.vue';
-import MovieCard from '@/components/MovieCard.vue';
+import {
+  defineComponent, computed, onMounted, ref, Ref,
+} from 'vue';
+import 'vue3-carousel/dist/carousel.css';
+import { useStore } from 'vuex';
+import { State } from '@/store'; // Adjust the path according to your folder structure
 import AppFooter from '@/components/AppFooter.vue';
+import HeroSection from '@/components/HeroSection.vue';
+import AppNavbar from '@/components/AppNavbar.vue';
+import GenereSelection from '@/components/GenereSelection.vue';
+import showGenre from '@/utils/showGeneres';
 
 export default defineComponent({
   name: 'HomeView',
   components: {
     AppNavbar,
     HeroSection,
-    MovieCard,
     AppFooter,
+    GenereSelection,
   },
-  data() {
+  setup() {
+    const store = useStore<State>();
+    const shows = computed(() => store.getters['shows/getShows']);
+    const showsByGenere = computed(() => store.getters['shows/getShowsByGenre']);
+
+    const loadShows = async () => {
+      try {
+        await store.dispatch('shows/fetchShows');
+      } catch (error) {
+        console.error('Failed to load shows:', error);
+      }
+    };
+
+    onMounted(() => {
+      loadShows();
+    });
+
     return {
-      movies: [
-        { id: 1, title: 'Movie 1', description: 'Description 1' },
-        { id: 2, title: 'Movie 2', description: 'Description 2' },
-        // Add more movie data
-      ],
+      shows,
+      showsByGenere,
+      loadShows,
+      showGenre,
     };
   },
 });
 </script>
 
 <style scoped>
-.movie-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.carousel__icon {
+  color: #fff !important;
 }
 </style>
