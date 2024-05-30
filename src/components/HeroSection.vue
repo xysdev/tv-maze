@@ -3,14 +3,15 @@
     <div class="wrapper">
       <div class="hero-section__summary">
         <div class="hero-section__rating-premiered">
-          <span>{{ formattedPremieredDate }}</span>
+          {{ formattedPremieredDate }}
           &#xb7;
           <span>
             <img
               class="hero-section__rating-logo"
               src="@/assets/ratings_logo.svg"
               alt="Ratings Logo"
-            />{{ show.rating?.average }}/10
+            />
+            <span>{{ show.rating?.average }}/10</span>
           </span>
         </div>
         <h3 class="hero-section__name">{{ show.name }}</h3>
@@ -55,7 +56,7 @@ export default defineComponent({
 
     const formattedPremieredDate = computed(() => dateFormatter(props.show.premiered, 'en-US', { year: 'numeric', month: 'long' }));
 
-    const strippedSummary = computed(() => props.show.summary.replace(/<\/?p>/g, ''));
+    const strippedSummary = computed(() => props.show.summary.replace(/<[^>]*>/g, ''));
 
     return {
       heroStyle,
