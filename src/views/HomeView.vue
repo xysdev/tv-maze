@@ -1,5 +1,5 @@
 <template>
-  <AppNavbar />
+  <Navbar />
   <HeroSection v-if="selectedShow" :show="selectedShow" />
   <div v-for="(title, key) in showGenre" :key="key">
     <GenereSelection :shows="showsByGenere[key]" :title="title" />
@@ -13,7 +13,7 @@ import { useStore } from 'vuex';
 import { State } from '@/store'; // Adjust the path according to your folder structure
 import AppFooter from '@/components/AppFooter.vue';
 import HeroSection from '@/components/HeroSection.vue';
-import AppNavbar from '@/components/AppNavbar.vue';
+import Navbar from '@/layout/Navbar/index.vue';
 import { Show } from '@/interfaces/show';
 import GenereSelection from '@/components/GenereSelection.vue';
 import showGenre from '@/utils/showGeneres';
@@ -21,7 +21,7 @@ import showGenre from '@/utils/showGeneres';
 export default defineComponent({
   name: 'HomeView',
   components: {
-    AppNavbar,
+    Navbar,
     HeroSection,
     AppFooter,
     GenereSelection,
