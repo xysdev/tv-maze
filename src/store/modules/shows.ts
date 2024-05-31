@@ -5,11 +5,13 @@ import { Show } from '@/interfaces/show';
 interface State {
   shows: Show[];
   showsByGenre: { [genre: string]: Show[] };
+  searchedResults: Show[];
 }
 
 const mainState: State = {
   shows: [],
   showsByGenre: {},
+  searchedResults: [],
 };
 
 const getters = {
@@ -28,6 +30,9 @@ const mutations = {
   setShowsByGenre(state: State, showsByGenre: { [genre: string]: Show[] }) {
     state.showsByGenre = showsByGenre;
   },
+  setSearchedResults(state: State, shows: Show[]) {
+    state.searchedResults = shows;
+  },
   categorizeShowsByGenre(state: State) {
     const categorizedShows = state.shows.reduce((acc, show) => {
       show.genres.forEach((genre) => {
@@ -44,15 +49,24 @@ const mutations = {
 };
 
 const actions = {
-  async fetchShows({ commit }: ActionContext<State, any>, page = 0): Promise<Show[]> {
+  async fetchShows({ commit }: ActionContext<State, any>, page = 0): Promise<void> {
     try {
       const response = await axios.get<Show[]>(`https://api.tvmaze.com/shows?page=${page}`);
       const shows = response.data;
       commit('setShows', shows);
       commit('categorizeShowsByGenre');
-      return shows;
     } catch (error) {
       console.error('Error fetching shows:', error);
+      throw error;
+    }
+  },
+  async fetchShowByName({ commit }: ActionContext<State, any>, name: string): Promise<void> {
+    try {
+      const response = await axios.get<Show>(`https://api.tvmaze.com/search/shows?q=${name}`);
+      const shows = response.data;
+      commit('setSearchedResults', [shows]);
+    } catch (error) {
+      console.error('Error fetching show by name:', error);
       throw error;
     }
   },
