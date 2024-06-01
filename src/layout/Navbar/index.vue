@@ -34,11 +34,6 @@ export default defineComponent({
       showGenre,
     };
   },
-  methods: {
-    redirectToGenre(title: string) {
-      this.$router.push({ name: 'GenrePage', params: { genre: title } });
-    },
-  },
 });
 </script>
 
