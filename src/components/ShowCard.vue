@@ -1,20 +1,28 @@
 <template>
   <div class="movie-card">
-    <router-link :to="route">
+    <RouterLink :to="`shows/${id}`">
       <div>
         <img :src="image" alt="Movie Poster" />
         <h3>{{ title }}</h3>
       </div>
-    </router-link>
+    </RouterLink>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import { RouterLink } from 'vue-router';
 
 export default defineComponent({
   name: 'ShowCard',
+  components: {
+    RouterLink,
+  },
   props: {
+    id: {
+      type: Number,
+      required: true,
+    },
     title: {
       type: String,
       required: true,

@@ -5,8 +5,8 @@
       <button @click="navigateToGenre">Show more</button>
     </div>
     <AppCrousel :shows="shows">
-      <template #default="{ title, image }">
-        <ShowCard :title="title" :image="image" />
+      <template #default="{ title, image, id }">
+        <ShowCard :title="title" :image="image" :id="id" />
       </template>
     </AppCrousel>
   </div>

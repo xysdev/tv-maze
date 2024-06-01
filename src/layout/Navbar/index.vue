@@ -11,7 +11,7 @@
             <router-link to="#">Generes</router-link>
             <ul>
               <li v-for="(title, key) in showGenre" :key="key">
-                <router-link :to="'/genres/' + title">{{ title }}</router-link>
+                <router-link :to="'/generes/' + title">{{ title }}</router-link>
               </li>
             </ul>
           </li>
