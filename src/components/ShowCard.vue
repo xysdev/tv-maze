@@ -1,12 +1,18 @@
 <template>
   <div class="movie-card">
-    <img :src="image" alt="Movie Poster" />
-    <h3>{{ title }}</h3>
+    <router-link :to="route">
+      <div>
+        <img :src="image" alt="Movie Poster" />
+        <h3>{{ title }}</h3>
+      </div>
+    </router-link>
   </div>
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'ShowCard',
   props: {
     title: {
@@ -18,7 +24,7 @@ export default {
       required: true,
     },
   },
-};
+});
 </script>
 
 <style scoped>
@@ -26,8 +32,12 @@ export default {
   width: 200px;
   padding: 10px;
   text-align: center;
-  img{
+  img {
     width: 100%;
+  }
+  a {
+    text-decoration: none;
+    color: #fff;
   }
 }
 
