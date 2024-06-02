@@ -1,40 +1,39 @@
-export interface Show {
+import { IImage } from './image';
+
+export interface IShow {
+  id: number | string;
+  name: string;
+  genres: string[];
+  status: string;
+  runtime: number;
+  premiered: string;
+  officialSite: string;
+  schedule: {
+    time: string;
+    days: string[];
+  };
+  rating: {
+    average: number;
+  };
+  network: {
     id: number;
     name: string;
-    genres: string[];
-    status: string;
-    runtime: number;
-    premiered: string;
-    officialSite: string;
-    schedule: {
-      time: string;
-      days: string[];
-    };
-    rating: {
-      average: number;
-    };
-    network: {
-      id: number;
+    country: {
       name: string;
-      country: {
-        name: string;
-        code: string;
-        timezone: string;
-      };
+      code: string;
+      timezone: string;
     };
-    webChannel?: {
-      id: number;
+  };
+  webChannel?: {
+    id: number;
+    name: string;
+    country: {
       name: string;
-      country: {
-        name: string;
-        code: string;
-        timezone: string;
-      };
+      code: string;
+      timezone: string;
     };
-    image: {
-      medium: string;
-      original: string;
-    };
-    summary: string;
-    updated: number;
-  }
+  };
+  image: IImage;
+  summary: string;
+  updated: number;
+}

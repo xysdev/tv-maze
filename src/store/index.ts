@@ -1,15 +1,11 @@
 import { InjectionKey } from 'vue';
 import { Store, createStore } from 'vuex';
-import { Show } from '@/interfaces/show';
+import { IState } from '@/interfaces';
 import showsModule from './modules/shows';
 
-export interface State {
-  shows: Show
-}
+export const key: InjectionKey<Store<IState>> = Symbol('store-key');
 
-export const key: InjectionKey<Store<State>> = Symbol('store-key');
-
-export default createStore<State>({
+export default createStore<IState>({
   modules: {
     shows: showsModule,
   },
