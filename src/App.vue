@@ -7,8 +7,8 @@
 import { defineComponent, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import Navbar from './layout/Navbar/index.vue';
-import { State } from './store';
 import AppFooter from './components/AppFooter.vue';
+import { IState } from './interfaces';
 
 export default defineComponent({
   name: 'App',
@@ -17,7 +17,7 @@ export default defineComponent({
     AppFooter,
   },
   setup() {
-    const store = useStore<State>();
+    const store = useStore<IState>();
 
     const loadShows = async () => {
       try {

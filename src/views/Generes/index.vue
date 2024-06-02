@@ -5,8 +5,8 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 import ShowsGrid from '@/layout/ShowsGrid/index.vue';
-import { State } from '@/store';
 import { useStore } from 'vuex';
+import { IState } from '@/interfaces';
 
 export default defineComponent({
   name: 'Generes',
@@ -21,7 +21,7 @@ export default defineComponent({
   },
   setup() {
     debugger;
-    const store = useStore<State>();
+    const store = useStore<IState>();
     const showGeneres = computed(() => store.getters['shows/getShowsByGenre']);
     return {
       showGeneres,

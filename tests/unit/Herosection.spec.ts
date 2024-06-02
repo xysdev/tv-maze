@@ -2,12 +2,12 @@
 import { shallowMount } from '@vue/test-utils';
 import HeroSection from '@/components/HeroSection.vue';
 import dateFormatter from '@/utils/dateFormatter';
-import { Show } from '@/interfaces/show';
+import { IShow } from '@/interfaces/show';
 
 jest.mock('@/utils/dateFormatter', () => jest.fn());
 
 describe('HeroSection.vue', () => {
-  let show: Show;
+  let show: IShow;
 
   beforeEach(() => {
     show = {
