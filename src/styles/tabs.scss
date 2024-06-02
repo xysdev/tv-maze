@@ -1,0 +1,28 @@
+.tabs-component {
+    margin-top: 20px;
+    .tabs-component-panel {
+      padding: 30px 10px;
+    }
+    .tabs-component-tabs {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      color: #cacaca;
+      border-bottom: 2px solid #cacaca;
+      & > .is-active {
+        color: #fff;
+        border-bottom: 2px solid #fff;
+      }
+      .nav-item {
+        list-style: none;
+        text-align: center;
+        cursor: pointer;
+        a {
+          padding: 10px 30px;
+          display: block;
+          text-decoration: none;
+          color: inherit;
+        }
+      }
+    }
+  }

@@ -17,7 +17,7 @@ import { defineComponent, PropType } from 'vue';
 import { useRouter } from 'vue-router';
 import 'vue3-carousel/dist/carousel.css';
 import ShowCard from '@/components/ShowCard.vue';
-import { Show } from '@/interfaces/show';
+import { IShow } from '@/interfaces';
 import AppCrousel from './AppCrousel.vue';
 
 export default defineComponent({
@@ -28,7 +28,7 @@ export default defineComponent({
   },
   props: {
     shows: {
-      type: Array as PropType<Array<Show>>,
+      type: Array as PropType<Array<IShow>>,
       required: true,
     },
     title: {

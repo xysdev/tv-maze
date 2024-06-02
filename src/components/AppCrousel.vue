@@ -13,7 +13,7 @@
 import { defineComponent, PropType } from 'vue';
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Navigation } from 'vue3-carousel';
-import { Show } from '@/interfaces/show';
+import { IShow } from '@/interfaces/show';
 
 export default defineComponent({
   name: 'CarouselComponent',
@@ -24,7 +24,7 @@ export default defineComponent({
   },
   props: {
     shows: {
-      type: Array as PropType<Array<Show>>,
+      type: Array as PropType<Array<IShow>>,
       required: true,
     },
   },

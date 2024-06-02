@@ -8,9 +8,8 @@
 <script lang="ts">
 import { defineComponent, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
-import { State } from '@/store'; // Adjust the path according to your folder structure
 import HeroSection from '@/components/HeroSection.vue';
-import { Show } from '@/interfaces/show';
+import { IShow, IState } from '@/interfaces';
 import GenereSelection from '@/components/GenereSelection.vue';
 import showGenre from '@/utils/showGeneres';
 
@@ -21,10 +20,10 @@ export default defineComponent({
     GenereSelection,
   },
   setup() {
-    const store = useStore<State>();
-    const shows = computed<Show[]>(() => store.getters['shows/getShows']);
+    const store = useStore<IState>();
+    const shows = computed<IShow[]>(() => store.getters['shows/getShows']);
     const showsByGenere = computed(() => store.getters['shows/getShowsByGenre']);
-    const selectedShow = computed<Show>(
+    const selectedShow = computed<IShow>(
       () => shows.value[Math.floor(Math.random() * shows.value.length)],
     );
 

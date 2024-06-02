@@ -14,13 +14,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ShowCard from '@/components/ShowCard.vue';
-import { Show } from '@/interfaces/show';
+import { IShow } from '@/interfaces';
 
 export default defineComponent({
   name: 'ShowsGrid',
   props: {
     shows: {
-      type: Array as () => Show[] | undefined,
+      type: Array as () => IShow[] | undefined,
       required: true,
     },
   },

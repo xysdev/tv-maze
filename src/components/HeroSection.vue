@@ -37,27 +37,28 @@
 
 <script lang="ts">
 import { defineComponent, computed, PropType } from 'vue';
-import { Show } from '@/interfaces/show';
+import { IShow } from '@/interfaces';
 import dateFormatter from '@/utils/dateFormatter';
+import sanitizeString from '@/utils/sanitizer';
 
 export default defineComponent({
   name: 'HeroSection',
   props: {
     show: {
-      type: Object as PropType<Show>,
+      type: Object as PropType<IShow>,
       required: true,
     },
   },
   setup(props) {
     const heroStyle = computed(() => ({
-      background: `linear-gradient(to left, transparent, black) 0% 0% / 50%, url(${props.show?.image.original}) right top no-repeat`,
+      background: `linear-gradient(to left, transparent, black) 0% 0% / 50%, url(${props.show?.image?.original}) right top no-repeat`,
       backgroundSize: '50%',
       backgroundColor: '#000',
     }));
 
     const formattedPremieredDate = computed(() => dateFormatter(props.show.premiered, 'en-US', { year: 'numeric', month: 'long' }));
 
-    const strippedSummary = computed(() => props.show.summary.replace(/<[^>]*>/g, ''));
+    const strippedSummary = computed(() => sanitizeString(props.show.summary));
 
     return {
       heroStyle,
