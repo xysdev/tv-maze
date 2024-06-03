@@ -19,8 +19,8 @@
         </ul>
       </nav>
     </div>
-    <router-link to="/search">
-      <img src="https://img.icons8.com/material-rounded/24/000000/search.png" alt="search" />
+    <router-link class="navbar__search" to="/search">
+      <img src="@/assets/magnifying_icon.svg" alt="search" />
     </router-link>
   </div>
 </template>
@@ -104,6 +104,30 @@ export default defineComponent({
     a {
       text-decoration: none;
       color: #fff;
+    }
+  }
+
+  &__search {
+    width: 25px;
+    text-align: center;
+    display: flex;
+    padding: 15px;
+    img {
+      width: 100%;
+    }
+  }
+}
+@include respond-to-md {
+  .navbar {
+    position: relative;
+    &__logo {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    &__logo-nav {
+      nav {
+        display: none;
+      }
     }
   }
 }
