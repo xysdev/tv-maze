@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Home from '../views/HomeView.vue';
-import Generes from '../views/Generes/index.vue';
-import Show from '../views/Show/index.vue';
+import Home from '@/views/Home/index.vue';
+import Generes from '@/views/Generes/index.vue';
+import Show from '@/views/Show/index.vue';
+import Search from '@/views/Search/index.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -20,6 +21,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'show',
     component: Show,
     props: true,
+  },
+  {
+    path: '/search',
+    name: 'Seneres',
+    component: Search,
   },
 ];
 

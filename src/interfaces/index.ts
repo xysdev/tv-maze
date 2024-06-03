@@ -8,3 +8,4 @@ export * from './country';
 export * from './selectedShow';
 export * from './state';
 export * from './showState';
+export * from './searchResult';

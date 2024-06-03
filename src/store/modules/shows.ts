@@ -7,10 +7,12 @@ import {
   IEpisode,
   IActor,
   ISeason,
+  ISearchResult,
 } from '@/interfaces';
 
 import sanitizeString from '@/utils/sanitizer';
 import {
+  fetchSearchResults,
   fetchShowById,
   fetchShows,
   fetchShowsCastById,
@@ -21,6 +23,7 @@ const mainState: IShowState = {
   shows: [],
   showsByGenre: {},
   selectedShow: {} as ISelectedShow,
+  searchedShows: [],
   loading: false,
 };
 
@@ -37,7 +40,12 @@ const getters = {
   getLoading(state: IShowState): boolean {
     return state.loading;
   },
+  getSearchResults(state: IShowState): IShow[] {
+    return state.searchedShows;
+  },
 };
+
+/// TODO: encapsulate the mutations in a single object
 
 const mutations = {
   setShows(state: IShowState, shows: IShow[]) {
@@ -52,7 +60,13 @@ const mutations = {
   setShowsLoading(state: IShowState, loading: boolean) {
     state.loading = loading;
   },
+  setSearchResults(state: IShowState, searchResults: ISearchResult[]) {
+    const shows = searchResults.map((searchResult) => searchResult.show);
+    state.searchedShows = shows;
+  },
   categorizeShowsByGenre(state: IShowState) {
+    // this snippet will create the categorized shows by genre array
+    // this appraoch is useed because api does not provide the shows by genre
     const categorizedShows = state.shows.reduce((acc, show) => {
       show.genres.forEach((genre) => {
         if (!acc[genre]) {
@@ -62,8 +76,8 @@ const mutations = {
       });
       return acc;
     }, {} as { [genre: string]: IShow[] });
-
     state.showsByGenre = categorizedShows;
+    state.loading = false;
   },
   createSelectedShow(
     state: IShowState,
@@ -104,7 +118,7 @@ const actions = {
   async fetchShows({ commit }: ActionContext<IShowState, IState>, page = 0): Promise<void> {
     try {
       commit('setShowsLoading', true);
-      const shows = fetchShows(page);
+      const shows = await fetchShows(page);
       commit('setShows', shows);
       commit('categorizeShowsByGenre');
     } catch (error) {
@@ -128,6 +142,19 @@ const actions = {
       commit('createSelectedShow', data);
     } catch (error) {
       console.error('Error fetching show by ID:', error);
+      throw error;
+    }
+  },
+  async fetchSearchResults(
+    { commit }: ActionContext<IShowState, IState>,
+    query: string,
+  ): Promise<void> {
+    try {
+      commit('setShowsLoading', true);
+      const searchResults = await fetchSearchResults(query);
+      commit('setSearchResults', searchResults);
+    } catch (error) {
+      console.error('Error fetching search results:', error);
       throw error;
     }
   },

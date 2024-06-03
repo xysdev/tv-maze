@@ -19,12 +19,14 @@
         </ul>
       </nav>
     </div>
+    <router-link to="/search">
+      <img src="https://img.icons8.com/material-rounded/24/000000/search.png" alt="search" />
+    </router-link>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import SearchBar from '@/components/SearchBar.vue';
 import showGenre from '@/utils/showGeneres';
 
 export default defineComponent({

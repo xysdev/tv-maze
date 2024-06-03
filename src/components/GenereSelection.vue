@@ -1,17 +1,3 @@
-<template>
-  <div>
-    <div class="genre-section-header">
-      <h3>{{ title }}</h3>
-      <button @click="navigateToGenre">Show more</button>
-    </div>
-    <AppCrousel :shows="shows">
-      <template #default="{ title, image, id }">
-        <ShowCard :title="title" :image="image" :id="id" />
-      </template>
-    </AppCrousel>
-  </div>
-</template>
-
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { useRouter } from 'vue-router';
@@ -49,6 +35,18 @@ export default defineComponent({
   },
 });
 </script>
+
+<template>
+  <div class="genre-section-header">
+    <h3>{{ title }}</h3>
+    <button @click="navigateToGenre">Show more</button>
+  </div>
+  <AppCrousel :shows="shows">
+    <template #default="{ title, image, id }">
+      <ShowCard :title="title" :image="image" :id="id" />
+    </template>
+  </AppCrousel>
+</template>
 
 <style scoped>
 .genre-section-header {

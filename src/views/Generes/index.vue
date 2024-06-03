@@ -20,7 +20,6 @@ export default defineComponent({
     },
   },
   setup() {
-    debugger;
     const store = useStore<IState>();
     const showGeneres = computed(() => store.getters['shows/getShowsByGenre']);
     return {

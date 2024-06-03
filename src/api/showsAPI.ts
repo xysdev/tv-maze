@@ -1,4 +1,9 @@
-import { IActor, IEpisode, IShow } from '@/interfaces';
+import {
+  IActor,
+  IEpisode,
+  ISearchResult,
+  IShow,
+} from '@/interfaces';
 import request from '@/utils/request';
 
 export const fetchShows = async (page = 0): Promise<IShow[]> => {
@@ -16,5 +21,9 @@ export const fetchShowsEpisodesById = async (id: number): Promise<IEpisode[]> =>
 };
 export const fetchShowsCastById = async (id: number): Promise<IActor[]> => {
   const response = await request.get<IActor[]>(`/shows/${id}/cast`);
+  return response.data;
+};
+export const fetchSearchResults = async (title: string): Promise<ISearchResult[]> => {
+  const response = await request.get<ISearchResult[]>(`/search/shows?q=${title}`);
   return response.data;
 };
