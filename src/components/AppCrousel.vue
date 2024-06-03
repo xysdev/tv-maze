@@ -21,7 +21,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <Carousel :items-to-show="9">
+  <Carousel :items-to-show="12" :mouseDrag="false">
     <Slide v-for="show in shows" :key="show.id">
       <slot :title="show.name" :image="show.image?.medium" :id="show.id"></slot>
     </Slide>
@@ -30,7 +30,3 @@ export default defineComponent({
     </template>
   </Carousel>
 </template>
-
-<style scoped>
-/* Add your styles here */
-</style>
