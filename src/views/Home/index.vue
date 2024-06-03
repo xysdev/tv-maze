@@ -42,9 +42,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-.carousel__icon {
-  color: #fff !important;
-}
-</style>

@@ -3,7 +3,6 @@
     <RouterLink :to="`/shows/${id}`">
       <div>
         <img :src="image" alt="Movie Poster" />
-        <h3>{{ title }}</h3>
       </div>
     </RouterLink>
   </div>
@@ -35,10 +34,9 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .movie-card {
   width: 200px;
-  padding: 10px;
   text-align: center;
   img {
     width: 100%;

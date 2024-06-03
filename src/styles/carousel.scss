@@ -1,0 +1,21 @@
+.carousel{
+    &__track{
+        margin: 0;
+    }
+    &__prev,
+    &__next{
+        height: 100%;
+        width: 60px;
+        margin: 0;
+        opacity: 0;
+        &:hover,
+        &:focus{
+            opacity: 1;
+        }
+    }
+    &__icon {
+        color: #fff;
+        width: 100%;
+        font-size: 50px;
+      }
+}
