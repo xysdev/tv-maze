@@ -15,7 +15,7 @@
               </li>
             </ul>
           </li>
-          <li><router-link to="home">All Shows </router-link></li>
+          <li><router-link to="/shows/all">All Shows </router-link></li>
         </ul>
       </nav>
     </div>
