@@ -6,4 +6,14 @@ module.exports = defineConfig({
   configureWebpack: {
     devtool: 'source-map',
   },
+  css: {
+    loaderOptions: {
+      scss: {
+        additionalData: `
+          @import "@/styles/variables/all.scss";
+          @import "@/styles/mixins/all.scss";
+        `,
+      },
+    },
+  },
 });
