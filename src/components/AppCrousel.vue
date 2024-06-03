@@ -1,14 +1,3 @@
-<template>
-  <Carousel :items-to-show="9">
-    <Slide v-for="show in shows" :key="show.id">
-      <slot :title="show.name" :image="show.image?.medium" :id="show.id"></slot>
-    </Slide>
-    <template #addons>
-      <Navigation />
-    </template>
-  </Carousel>
-</template>
-
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import 'vue3-carousel/dist/carousel.css';
@@ -30,6 +19,17 @@ export default defineComponent({
   },
 });
 </script>
+
+<template>
+  <Carousel :items-to-show="9">
+    <Slide v-for="show in shows" :key="show.id">
+      <slot :title="show.name" :image="show.image?.medium" :id="show.id"></slot>
+    </Slide>
+    <template #addons>
+      <Navigation />
+    </template>
+  </Carousel>
+</template>
 
 <style scoped>
 /* Add your styles here */

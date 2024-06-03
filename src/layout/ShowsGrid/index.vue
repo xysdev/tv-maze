@@ -1,16 +1,3 @@
-<template>
-  <div class="wrapper">
-    <div v-if="shows" class="shows-grid">
-        <ShowCard
-          v-for="show in shows"
-          :key="show.id"
-          :image="show.image.medium"
-          :title="show.name"
-        />
-    </div>
-  </div>
-</template>
-
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ShowCard from '@/components/ShowCard.vue';
@@ -20,7 +7,7 @@ export default defineComponent({
   name: 'ShowsGrid',
   props: {
     shows: {
-      type: Array as () => IShow[] | undefined,
+      type: Array as () => IShow[],
       required: true,
     },
   },
@@ -29,6 +16,20 @@ export default defineComponent({
   },
 });
 </script>
+
+<template>
+  <div class="wrapper">
+    <div class="shows-grid">
+        <ShowCard
+          v-for="show in shows"
+          :key="show.id"
+          :id = "show.id"
+          :image="show.image?.medium"
+          :title="show.name"
+        />
+    </div>
+  </div>
+</template>
 
 <style scoped lang="scss">
 .shows-grid {

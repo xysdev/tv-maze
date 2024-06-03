@@ -1,12 +1,17 @@
 <template>
-  <HeroSection v-if="selectedShow" :show="selectedShow" />
-  <div v-for="(title, key) in showGenre" :key="key">
-    <GenereSelection :shows="showsByGenere[key]" :title="title" />
+  <div v-if="!loading">
+    <HeroSection :show="selectedShow" />
+    <GenereSelection
+      v-for="(title, key) in showGenre"
+      :key="key"
+      :shows="showsByGenere[title]"
+      :title="title"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { useStore } from 'vuex';
 import HeroSection from '@/components/HeroSection.vue';
 import { IShow, IState } from '@/interfaces';
@@ -14,7 +19,7 @@ import GenereSelection from '@/components/GenereSelection.vue';
 import showGenre from '@/utils/showGeneres';
 
 export default defineComponent({
-  name: 'HomeView',
+  name: 'Home',
   components: {
     HeroSection,
     GenereSelection,
@@ -23,6 +28,7 @@ export default defineComponent({
     const store = useStore<IState>();
     const shows = computed<IShow[]>(() => store.getters['shows/getShows']);
     const showsByGenere = computed(() => store.getters['shows/getShowsByGenre']);
+    const loading = computed<boolean>(() => store.getters['shows/getLoading']);
     const selectedShow = computed<IShow>(
       () => shows.value[Math.floor(Math.random() * shows.value.length)],
     );
@@ -31,6 +37,7 @@ export default defineComponent({
       showsByGenere,
       showGenre,
       selectedShow,
+      loading,
     };
   },
 });

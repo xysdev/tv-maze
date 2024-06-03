@@ -5,5 +5,6 @@ export interface IShowState {
     shows: IShow[];
     showsByGenre: { [genre: string]: IShow[] };
     selectedShow: ISelectedShow;
+    searchedShows: IShow[];
     loading: boolean;
 }

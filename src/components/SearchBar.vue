@@ -1,58 +1,65 @@
-<template>
-  <label for="searchbar" class="search-container">
-    <img src="https://img.icons8.com/material-rounded/24/000000/search.png" alt="Search" />
-    <input id="searchbar" type="text" placeholder="Search..." @input="search" />
-  </label>
-</template>
-
 <script lang="ts">
-import { State } from '@/store';
-import { defineComponent } from 'vue';
-import { useStore } from 'vuex';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'SearchBar',
-  setup() {
-    const store = useStore<State>();
-    const fetchShow = async (searchQuery: string) => {
-      await store.dispatch('shows/fetchShows', searchQuery);
-    };
-    return { fetchShow };
-  },
-  methods: {
-    search(event: Event) {
-      const target = event.target as HTMLInputElement;
-      this.fetchShow(target.value);
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+    label: {
+      type: String,
+      default: '',
+    },
+    modelValue: {
+      type: [String, Number],
+      required: true,
+    },
+    type: {
+      type: String,
+      default: 'text',
+    },
+    placeholder: {
+      type: String,
+      default: '',
     },
   },
 });
 </script>
+<template>
+  <div class="search-container">
+    <label :for="id">
+      <input
+        class="search-container__search-input"
+        :id="id"
+        :type="type"
+        :value="modelValue"
+        :placeholder="placeholder"
+        v-bind="$attrs"
+      />
+    </label>
+  </div>
+</template>
 
-<style scoped>
+<style scoped lang="scss">
 .search-container {
-  background: #fff;
-  display: flex;
-  align-items: center;
-  width: 300px;
-  border-radius: 25px;
-  padding: 5px;
-  input {
+  width: 100%;
+
+  &__search-input {
+    background: #4b4e5a;
+    padding: 0;
     border: none;
     outline: none;
-    width: 100%;
-    padding: 5px;
-    background: transparent;
+    width: calc(100% - 100px);
+    padding: 0 50px;
+    height: 60px;
+    font-size: 22px;
+    color: #fff;
+
+    &::placeholder {
+      color: #fff;
+    }
   }
-}
-
-.search-container .search-container button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.search-container button img {
-  width: 20px;
-  height: 20px;
 }
 </style>

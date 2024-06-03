@@ -1,6 +1,6 @@
 <template>
   <div class="movie-card">
-    <RouterLink :to="`shows/${id}`">
+    <RouterLink :to="`/shows/${id}`">
       <div>
         <img :src="image" alt="Movie Poster" />
         <h3>{{ title }}</h3>
@@ -20,7 +20,7 @@ export default defineComponent({
   },
   props: {
     id: {
-      type: Number,
+      type: [String, Number],
       required: true,
     },
     title: {
@@ -29,7 +29,7 @@ export default defineComponent({
     },
     image: {
       type: String,
-      required: true,
+      default: undefined,
     },
   },
 });
