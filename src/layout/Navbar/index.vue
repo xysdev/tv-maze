@@ -79,6 +79,7 @@ export default defineComponent({
             padding: 0;
             top: 51px;
             left: 0;
+            z-index: 10;
             background: #191a23;
             white-space: nowrap;
           }

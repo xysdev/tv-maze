@@ -28,14 +28,7 @@ export default defineComponent({
     const store = useStore<IState>();
     const show = computed<ISelectedShow>(() => store.getters['shows/getselectedShow']);
     const loading = computed(() => store.getters['shows/getLoading']);
-    const fetchShow = async () => {
-      try {
-        await store.dispatch('shows/fetchShowById', props.id);
-      } catch (error) {
-        console.error('Failed to load show:', error);
-      }
-    };
-    fetchShow();
+    store.dispatch('shows/fetchShowById', props.id);
 
     return {
       show,
@@ -65,9 +58,7 @@ export default defineComponent({
 </template>
 
 <style scoped lang="scss">
-
 .show-details-container {
   display: flex;
 }
-
 </style>

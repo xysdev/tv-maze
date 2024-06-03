@@ -4,7 +4,7 @@
   <AppFooter />
 </template>
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
+import { defineComponent } from 'vue';
 import { useStore } from 'vuex';
 import Navbar from './layout/Navbar/index.vue';
 import AppFooter from './components/AppFooter.vue';
@@ -18,21 +18,7 @@ export default defineComponent({
   },
   setup() {
     const store = useStore<IState>();
-
-    const loadShows = async () => {
-      try {
-        await store.dispatch('shows/fetchShows');
-      } catch (error) {
-        console.error('Failed to load shows:', error);
-      }
-    };
-
-    onMounted(() => {
-      loadShows();
-    });
-    return {
-      loadShows,
-    };
+    store.dispatch('shows/fetchShows');
   },
 });
 </script>
