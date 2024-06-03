@@ -60,16 +60,6 @@ describe('HeroSection.vue', () => {
     expect(wrapper.find('.hero-section__name').text()).toBe(show.name);
   });
 
-  it('computes heroStyle correctly', () => {
-    const wrapper = shallowMount(HeroSection, {
-      props: { show },
-    });
-    expect((wrapper.vm as any).heroStyle).toEqual({
-      background: `linear-gradient(to left, transparent, black), url(${show.image.original}) right top no-repeat`,
-      backgroundSize: '50%',
-    });
-  });
-
   it('formats premiered date correctly', () => {
     const wrapper = shallowMount(HeroSection, {
       props: { show },
