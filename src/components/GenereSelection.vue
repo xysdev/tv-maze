@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { RouterLink, useRouter } from 'vue-router';
+import { RouterLink } from 'vue-router';
 import 'vue3-carousel/dist/carousel.css';
 import ShowCard from '@/components/ShowCard.vue';
 import { IShow } from '@/interfaces';
@@ -22,17 +22,6 @@ export default defineComponent({
       type: String,
       required: true,
     },
-  },
-  setup(props) {
-    const router = useRouter();
-
-    const navigateToGenre = () => {
-      router.push({ name: 'GenrePage', params: { genre: props.title } });
-    };
-
-    return {
-      navigateToGenre,
-    };
   },
 });
 </script>
