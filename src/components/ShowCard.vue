@@ -1,33 +1,49 @@
 <template>
   <div class="movie-card">
-    <img :src="image" alt="Movie Poster" />
-    <h3>{{ title }}</h3>
+    <RouterLink :to="`/shows/${id}`">
+      <div>
+        <img :src="image" alt="Movie Poster" />
+      </div>
+    </RouterLink>
   </div>
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue';
+import { RouterLink } from 'vue-router';
+
+export default defineComponent({
   name: 'ShowCard',
+  components: {
+    RouterLink,
+  },
   props: {
+    id: {
+      type: [String, Number],
+      required: true,
+    },
     title: {
       type: String,
       required: true,
     },
     image: {
       type: String,
-      required: true,
+      default: undefined,
     },
   },
-};
+});
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .movie-card {
   width: 200px;
-  padding: 10px;
   text-align: center;
-  img{
+  img {
     width: 100%;
+  }
+  a {
+    text-decoration: none;
+    color: #fff;
   }
 }
 
