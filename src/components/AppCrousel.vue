@@ -11,6 +11,29 @@ export default defineComponent({
     Slide,
     Navigation,
   },
+  data() {
+    return {
+      breakpoints: {
+        700: {
+          itemsToShow: 3.5,
+          snapAlign: 'center',
+        },
+        1400: {
+          itemsToShow: 6,
+          snapAlign: 'center',
+        },
+        1800: {
+          itemsToShow: 8,
+          snapAlign: 'start',
+        },
+        // 1920 and up
+        1920: {
+          itemsToShow: 12,
+          snapAlign: 'start',
+        },
+      },
+    };
+  },
   props: {
     shows: {
       type: Array as PropType<Array<IShow>>,
@@ -21,7 +44,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <Carousel :items-to-show="12" :mouseDrag="false">
+  <Carousel :breakpoints="breakpoints" :mouseDrag="false">
     <Slide v-for="show in shows" :key="show.id">
       <slot :title="show.name" :image="show.image?.medium" :id="show.id"></slot>
     </Slide>
