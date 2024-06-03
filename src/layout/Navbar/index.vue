@@ -124,6 +124,7 @@ export default defineComponent({
       margin-left: 20px;
       margin-right: 20px;
     }
+    /// TODO: Add media query for navbar
     &__logo-nav {
       nav {
         display: none;

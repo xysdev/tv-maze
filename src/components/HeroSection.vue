@@ -179,10 +179,11 @@ export default defineComponent({
 }
 @include respond-to-md {
   .hero-section {
-    padding: 50px 0;
+
     &__summary {
       width: 100%;
       padding: 0 20px;
+      padding-bottom:50px ;
     }
     &__background {
       position: relative;
